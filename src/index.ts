@@ -1,22 +1,21 @@
 
-import express, { json } from "express";
-import usersRouter from "./routes/users";
-import notFound from "./middleware/not-found";
-import connect from "./db/connection";
-import configDevEnv from "../config";
-import errorHandler from "./middleware/error-handler";
-import morgan from "morgan";
-import { productRouter } from "./routes/products";
-import { Logger } from "./logs/logger";
-configDevEnv();
-connect();
 import cors from 'cors';
+import express, { json } from "express";
+import morgan from "morgan";
+import configDevEnv from "../config";
+import connect from "./db/connection";
+import { Logger } from "./logs/logger";
+import errorHandler from "./middleware/error-handler";
+import notFound from "./middleware/not-found";
 import { analyticsRouter } from "./routes/analytics-router";
-import { orderRouter } from "./routes/order-router";
-import path from "path";
 import { cartRouter } from "./routes/cart-router";
 import { messageRouter } from "./routes/message-router";
+import { orderRouter } from "./routes/order-router";
 import pageRoute from './routes/page-router';
+import { productRouter } from "./routes/products";
+import usersRouter from "./routes/users";
+configDevEnv();
+connect();
 
 
 
