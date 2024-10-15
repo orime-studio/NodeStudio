@@ -32,7 +32,7 @@ app.use(cors());
 
 
 /* app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads'))); */
-app.use("users", usersRouter);
+app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/products", productRouter);
 app.use("/api/v1/analytics", analyticsRouter);
 app.use("/api/v1/orders", orderRouter);
