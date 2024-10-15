@@ -17,7 +17,7 @@ const transporter = nodemailer.createTransport({
 // יצירת הודעה ושליחת מייל
 router.post('/send-message', async (req, res, next) => {
   try {
-    const { name, email, message } = req.body;
+    const { name, email,message } = req.body;
 
     // יצירת הודעה במסד הנתונים
     const result = await messageService.createMessage(req.body as IMessage);
