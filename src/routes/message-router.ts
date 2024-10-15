@@ -5,10 +5,16 @@ import router from "./users";
 //create new message
 router.post('/send-message', async (req, res, next) => {
     try {
-        const result = await messageService.createMessage(req.body as IMessage);
+        const messageData: IMessage = req.body;
+        const result = await messageService.createMessage(messageData);
+        
+        // שליחת מייל לאחר יצירת ההודעה
+        await messageService.sendEmail(messageData);
+        
         res.status(201).json(result);
     } catch (e) {
-        next(e.message);
+        console.error('Error creating message:', e); // הדפסת שגיאה לקונסול
+        res.status(500).json({ message: 'Error creating message', error: e.message });
     }
 });
 
