@@ -37,7 +37,7 @@ export const messageService = {
     sendEmail: async (messageData: IMessage) => {
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: 'recipient@example.com', // כתובת המייל שאליה תשלחי את ההודעה
+            to: 'orime.studio.wd@gmail.com', // כתובת המייל שאליה תשלחי את ההודעה
             subject: 'New Message from Contact Form',
             text: `
             You have received a new message:
