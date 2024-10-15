@@ -17,10 +17,10 @@ export const messageService = {
         console.log('Creating a new message with data:', data);
         const message = new Message(data);
         console.log('Message created:', message);
-        
+
         // שמירת ההודעה במסד הנתונים
         await message.save();
-        
+
         // שליחת המייל
         await messageService.sendEmail(data); // קריאה לשליחת המייל
     },
@@ -35,13 +35,14 @@ export const messageService = {
 
     // שליחת מייל
     sendEmail: async (messageData: IMessage) => {
+        console.log('Preparing to send email...');
         const mailOptions = {
             from: process.env.EMAIL_USER,
-            to: 'orime.studio.wd@gmail.com', // כתובת המייל שאליה תשלחי את ההודעה
+            to: 'orime.studio.wd@gmail.com',
             subject: 'New Message from Contact Form',
             text: `
             You have received a new message:
-
+    
             Name: ${messageData.fullName}
             Email: ${messageData.email}
             Phone: ${messageData.phone}
@@ -50,6 +51,7 @@ export const messageService = {
         };
 
         try {
+            console.log('Sending email with options:', mailOptions);
             await transporter.sendMail(mailOptions);
             console.log('Email sent successfully');
         } catch (error) {
