@@ -3,34 +3,31 @@ import nodemailer from 'nodemailer';
 import { IMessage } from '../@types/@types';
 import Message from '../db/models/message-model';
 
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+        user: 'orime.studio.wd@gmail.com', // כתובת הדוא"ל שלך
+        pass: 'irxc uywu oejz tugl',
+    },
+});
 
 const sendEmail = async (to: string, subject: string, text: string) => {
-    const transporter = nodemailer.createTransport({
-        service: 'gmail',
-        auth: {
-            user: 'orime.studio.wd@gmail.com', // כתובת הדוא"ל שלך
-            pass: 'irxc uywu oejz tugl', 
-        },
-    });
-
     const mailOptions = {
         from: 'orime.studio.wd@gmail.com',
         to,
         subject,
-        text : "thank you for your message",
+        text,
     };
 
     try {
         const info = await transporter.sendMail(mailOptions);
         console.log('Email sent:', info.response);
-        return info; // מחזירה את התגובה לצורך טיפול נוסף אם צריך
+        return info;
     } catch (err) {
         console.error('Error sending email:', err);
-        throw new Error('Failed to send email'); // זורקת שגיאה במקרה של כישלון
+        throw new Error('Failed to send email');
     }
 };
-
-
 
 export const messageService = {
     // יצירת הודעה חדשה
@@ -42,8 +39,12 @@ export const messageService = {
         // שמירת ההודעה במסד הנתונים
         const savedMessage = await message.save();
 
-        // שליחת המייל
-        await sendEmail(data.email, 'New Message', data.message); // שלחי מייל עם הפרטים
+        // שליחת מייל תודה ללקוח
+        await sendEmail(data.email, 'Thank you for your message', 'Thank you for reaching out! We will get back to you soon.');
+
+        // שליחת מייל עם הפרטים שלך למייל שלך
+        const adminMessage = `New message from: ${data.fullName} (${data.email})\n\nMessage: ${data.message}`;
+        await sendEmail('your-email@example.com', 'New Lead Received', adminMessage);
 
         return savedMessage; // החזרת ההודעה שנשמרה
     },
