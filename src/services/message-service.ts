@@ -8,8 +8,8 @@ const sendEmail = async (to: string, subject: string, text: string) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user: process.env.EMAIL_USER, // כתובת הדוא"ל שלך
-            pass: process.env.EMAIL_PASS, 
+            user: 'orime.studio.wd@gmail.com', // כתובת הדוא"ל שלך
+            pass: 'irxc uywu oejz tugl', 
         },
     });
 
