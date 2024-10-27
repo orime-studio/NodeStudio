@@ -44,7 +44,7 @@ export const messageService = {
 
         // שליחת מייל עם הפרטים שלך למייל שלך
         const adminMessage = `New message from: ${data.fullName} (${data.email})\n\nMessage: ${data.message}`;
-        await sendEmail('your-email@example.com', 'New Lead Received', adminMessage);
+        await sendEmail('orime.studio.wd@gmail.com', 'New Lead Received', adminMessage);
 
         return savedMessage; // החזרת ההודעה שנשמרה
     },
