@@ -17,7 +17,7 @@ const sendEmail = async (to: string, subject: string, text: string) => {
         from: 'orime.studio.wd@gmail.com',
         to,
         subject,
-        text,
+        text : "thank you for your message",
     };
 
     try {
