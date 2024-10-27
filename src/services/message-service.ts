@@ -9,7 +9,7 @@ const sendEmail = async (to: string, subject: string, text: string) => {
         service: 'gmail',
         auth: {
             user: 'orime.studio.wd@gmail.com', // כתובת הדוא"ל שלך
-            pass: 'rgbphd45BN', // סיסמת האפליקציה שלך
+            pass: 'irxc uywu oejz tugl', 
         },
     });
 
