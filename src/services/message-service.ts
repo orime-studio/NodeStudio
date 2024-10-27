@@ -3,7 +3,8 @@ import nodemailer from 'nodemailer';
 import { IMessage } from '../@types/@types';
 import Message from '../db/models/message-model';
 
-const sendEmail = (to: string, subject: string, text: string) => {
+
+const sendEmail = async (to: string, subject: string, text: string) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -19,8 +20,17 @@ const sendEmail = (to: string, subject: string, text: string) => {
         text,
     };
 
-    return transporter.sendMail(mailOptions);
+    try {
+        const info = await transporter.sendMail(mailOptions);
+        console.log('Email sent:', info.response);
+        return info; // מחזירה את התגובה לצורך טיפול נוסף אם צריך
+    } catch (err) {
+        console.error('Error sending email:', err);
+        throw new Error('Failed to send email'); // זורקת שגיאה במקרה של כישלון
+    }
 };
+
+
 
 export const messageService = {
     // יצירת הודעה חדשה
