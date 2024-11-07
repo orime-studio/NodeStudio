@@ -23,12 +23,6 @@ Logger.error("hi");
 
 const app = express();
 
-app.use('/img', express.static('path_to_videos', {
-  maxAge: '30d',  // הגדרת מטמון ל-30 ימים
-  setHeaders: (res, path) => {
-      res.setHeader("Cache-Control", "public, max-age=2592000");
-  }
-}));
 
 //middleware chain:
 app.use(json());
