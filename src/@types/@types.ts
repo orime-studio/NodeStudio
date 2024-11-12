@@ -147,7 +147,7 @@ export type IMessage = {
   fullName: string;
   email: string;
   phone: string;
-  message: string;
+  message?: string;
   createdAt?: Date;
 }
 
