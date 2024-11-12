@@ -6,7 +6,7 @@ const joiMessageSchema = Joi.object<IMessage>({
     email: Joi.string().email().min(5).max(20).required(),
     phone: Joi.string().min(9).max(15).required(),
 
-    message: Joi.string().min(2).max(256).required(),
+    message: Joi.string().min(2).max(256),
 });
 
 export default joiMessageSchema;
